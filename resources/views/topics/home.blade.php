@@ -17,7 +17,7 @@
           <a href="{{ route('categories.show', 1) }}">新闻</a>
        </div>
       <div class="panel panel-default">
-         @include('topics.partials.homes', ['filterd_topics' => $topics['xinwen']])
+         @include('topics.partials.homes', ['filterd_topics' => $news])
       </div>
      </ul>
     <div class="text-right">
@@ -36,7 +36,7 @@
             <a href="{{ route('categories.show', config('phphub.qa_category_id')) }}">问答</a>
         </div>
        <div class="panel panel-default">
-         @include('topics.partials.homes', ['filterd_topics' => $topics['wenda']])
+         @include('topics.partials.homes', ['filterd_topics' => $questions])
       </div>
     </ul>
     <div class="text-right">
@@ -55,7 +55,7 @@
           <a href="{{ route('categories.show', 5) }}">分享</a>
       </div>
      <div class="panel panel-default">
-       @include('topics.partials.homes', ['filterd_topics' => $topics['fenxiang']])
+       @include('topics.partials.homes', ['filterd_topics' => $shares])
     </div>
   </ul>
   <div class="text-right">
@@ -73,7 +73,7 @@
           <a href="{{ route('categories.show', 6) }}">教程</a>
       </div>
      <div class="panel panel-default">
-        @include('topics.partials.homes', ['filterd_topics' => $topics['jiaocheng']])
+        @include('topics.partials.homes', ['filterd_topics' => $courses])
      </div>
     </ul>
     <div class="text-right">
@@ -91,7 +91,7 @@
            <a href="{{ route('categories.show', config('phphub.blog_category_id')) }}">专栏</a>
        </div>
        <div class="panel panel-default">
-         @include('topics.partials.homes', ['filterd_topics' => $topics['zhuanlan']])
+         @include('topics.partials.homes', ['filterd_topics' => $blogs])
       </div>
     </ul>
     <div class="text-right">
@@ -109,7 +109,7 @@
            <a href="{{ route('categories.show',  config('phphub.machine_category_id')) }}">设备</a>
        </div>
        <div class="panel panel-default">
-         @include('topics.partials.homes', ['filterd_topics' => $topics['shebei']])
+         @include('topics.partials.homes', ['filterd_topics' => $machines])
        </div>
     </ul>
     <div class="text-right">

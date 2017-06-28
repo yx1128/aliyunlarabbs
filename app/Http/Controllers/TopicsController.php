@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Phphub\Core\CreatorListener;
@@ -17,6 +19,7 @@ use App\Models\Value;
 use Phphub\Handler\Exception\ImageUploadException;
 use Phphub\Markdown\Markdown;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Http\Requests\StoreTopicRequest;
 use Auth;
 use Flash;
@@ -37,11 +40,16 @@ class TopicsController extends Controller implements CreatorListener
 
     }
 
-    public function home()
+    public function home( Topic $topic )
     {
-        $topics = Topic::allFromCache();
+        $news = $topic->where('category_id' , 1)->orderBy('created_at', 'desc')->paginate(7);
+        $questions = $topic->where('category_id' , 4)->orderBy('created_at', 'desc')->paginate(7);
+        $shares = $topic->where('category_id' , 5)->orderBy('created_at', 'desc')->paginate(7);
+        $courses = $topic->where('category_id' , 6)->orderBy('created_at', 'desc')->paginate(7);
+        $blogs = $topic->where('category_id' , 8)->orderBy('created_at', 'desc')->paginate(7);
+        $machines = $topic->where('category_id' , 9)->orderBy('created_at', 'desc')->paginate(7);
 
-        return view('topics.home', compact('topics'));
+        return view('topics.home', compact('news', 'questions', 'shares', 'courses', 'blogs', 'machines'));
     }
 
     public function index(Request $request, Topic $topic)
@@ -131,16 +139,16 @@ class TopicsController extends Controller implements CreatorListener
             $point = $topic->point_id;
           if ($point != 0){
             $values = Value::where('point_id', $point )->get();
-            $num = Point::findOrFail($point);
+            $pointid = Point::findOrFail($point);
             $data = $values->lists('value')->toArray();
             $time = $values->lists('created_at')->toArray();
             $chart = Charts::create('line', 'highcharts')
                 //->view('custom.line.chart.view') // Use this if you want to use your own template
                 ->title( $machine->name )
-                ->ElementLabel( $num->name )
+                ->ElementLabel( $pointid->name )
                 ->labels($time)
                 ->values($data)
-                ->dimensions(800,400)
+                ->dimensions(800,500)
                 ->responsive(false);
 
             return view('discussions.show', compact(
@@ -338,7 +346,7 @@ class TopicsController extends Controller implements CreatorListener
         app(UserPublishedNewTopic::class)->remove(Auth::user(), $topic);
         app(BlogHasNewArticle::class)->remove(Auth::user(), $topic, $blog);
 
-        return redirect()->route('topics.index');
+        return redirect()->route('topics.home');
     }
 
     public function uploadImage(Request $request)

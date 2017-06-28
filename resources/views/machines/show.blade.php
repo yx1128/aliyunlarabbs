@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-
+<link rel="stylesheet" href="http://phphub5.app//build/assets/css/bootstrap-datetimepicker.min.css">
 <div class="blog-pages">
 
 
@@ -25,8 +25,10 @@
                             <button class="btn btn-primary pull-right no-pjax" type="submit">查询</button>
                         </div>
                       </h3>
-                      <input name="machineid" type="hidden" value="{{ $machine->id }}">
-                        <div class="form-group" style="width:180px">
+                      <div class="container">
+                         <div class="row">
+                         <input name="machineid" type="hidden" value="{{ $machine->id }}">
+                          <div class="col-md-4 form-group" style="width:240px">
 
                               <select class="form-control" name="point">
                                 <option value="" disabled {{ 'selected' }}>选择测点</option>
@@ -34,12 +36,21 @@
                                 <option value="{{ $point->id }}">{{ $point->name }}</option>
                                 @endforeach
                              </select>
-                        </div>
+                         </div>
+                      <div class="col-md-4 form-group" style="width:200px">
+                        <input class="form-control" placeholder="查询开始时间" size="15" type="text" name="startTime" id="datetimeStart" readonly class="form_datetime">
+                      </div>
+
+                      <div class="col-md-4 form-group" style="width:200px">
+                        <input class="form-control" placeholder="查询结束时间" size="15" type="text" name="endTime" id="datetimeEnd" readonly class="form_datetime">
+                      </div>
+                    </div>
+                  </div>
                   </form>
                   <hr>
-                  @if($machine->image != null)
-                    @include('machines._images')
-                  @endif
+                @if($machine->image != null)
+                  @include('machines._images')
+                @endif
                 </div>
               </div>
       <div class="panel article-body article-index">
@@ -92,5 +103,27 @@
 
 
 </div>
+@section('scripts')
+<script  type="text/javascript" src="http://phphub5.app//build/assets/js/bootstrap-datetimepicker.min.js"></script>
+<script  type="text/javascript" src="http://phphub5.app//build/assets/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript">
+        $("#datetimeStart").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:ss',
+            minView:'hour',
+            language: 'zh-CN',
+            autoclose:true,
+        }).on("click",function(){
+            $("#datetimeStart").datetimepicker("setEndDate",$("#datetimeEnd").val())
+        });
+        $("#datetimeEnd").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:ss',
+            minView:'hour',
+            language: 'zh-CN',
+            autoclose:true,
+        }).on("click",function(){
+            $("#datetimeEnd").datetimepicker("setStartDate",$("#datetimeStart".val()))
+        });
+    </script>
+@stop
 
 @stop

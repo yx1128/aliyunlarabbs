@@ -44,11 +44,17 @@ class MachinesController extends Controller
     public function search(Request $request)
       {
          $num =$request->input('point');
+         $start = $request->input('startTime');
+         $end = $request->input('endTime');
          if($num != null){
          $id = $request->input('machineid');
+         if($start != null && $end != null){
+         $values = Value::where('point_id', $num )->whereBetween('created_at', [$start, $end])->get();
+       }else{
          $values = Value::where('point_id', $num )->get();
+       }
          $points = Point::findOrFail($num);
-         //$name = $points->lists('name');
+
          $data = $values->lists('value')->toArray();
          $time = $values->lists('created_at')->toArray();
          $machine = Machine::findOrFail($id);
@@ -63,7 +69,7 @@ class MachinesController extends Controller
          $user = Auth::user();
          $topic = new Topic;
 
-         return view('machines.search',compact('num','values','id','machine','chart','topic','user','points'));
+         return view('machines.search',compact('num','values','id','machine','chart','topic','user','points','start','end'));
        }
        else{
          Flash::error("无该测点信息");

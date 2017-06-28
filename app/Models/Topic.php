@@ -69,9 +69,7 @@ class Topic extends Model
             SiteStatus::newTopic();
         });
 
-        static::saving(function($model) {
-            Cache::forget('topics');
-        });
+
 
     }
 
@@ -232,33 +230,5 @@ class Topic extends Model
         return route($names, $params);
     }
 
-    public static function allFromCache($expire = 0)
-    {
-      $data = Cache::remember('topics', 60, function () {
-            $raw_topics = self::orderBy('created_at', 'desc')->paginate(50);
-            $sorted = [];
 
-            $sorted['xinwen'] = $raw_topics->filter(function ($item) {
-                return $item->category_id == '1';
-            });
-            $sorted['wenda'] = $raw_topics->filter(function ($item) {
-                return $item->category_id == '4';
-            });
-            $sorted['fenxiang'] = $raw_topics->filter(function ($item) {
-                return $item->category_id == '5';
-            });
-            $sorted['jiaocheng'] = $raw_topics->filter(function ($item) {
-
-                return $item->category_id == '6';
-            });
-            $sorted['zhuanlan'] = $raw_topics->filter(function ($item) {
-                return $item->category_id == '8';
-            });
-            $sorted['shebei'] = $raw_topics->filter(function ($item) {
-                return $item->category_id == '9';
-            });
-          return $sorted;
-      });
-      return $data;
-  }
 }

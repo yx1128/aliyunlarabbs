@@ -1,9 +1,8 @@
-<!--  Powered by PHPHub-->
 <!DOCTYPE html>
 <html lang="zh">
 	<head>
 
-		<meta charset="UTF-8">
+		<meta charset="utf-8">
 
 		<title>@section('title')社区@show</title>
 
@@ -42,6 +41,7 @@
 	    @yield('styles')
 
 		<meta http-equiv="x-pjax-version" content="{{ elixir('assets/css/styles.css') }}">
+
 
 
 	</head>

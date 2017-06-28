@@ -72,11 +72,12 @@ return [
                 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.4/css/highcharts.css',
             ],
             'scripts' => [
-                'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/highcharts.js',
+                //'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/highcharts.js',
+                 'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/highstock.js',
                  'https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/js/modules/exporting.js',
-                //'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/map.js',
-                //'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/data.js',
-                //'https://code.highcharts.com/mapdata/custom/world.js',
+                 'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/map.js',
+                 'https://cdnjs.cloudflare.com/ajax/libs/highmaps/5.0.2/js/modules/data.js',
+                 'https://code.highcharts.com/mapdata/custom/world.js',
             ],
         ],
 

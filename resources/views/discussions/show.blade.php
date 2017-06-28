@@ -4,15 +4,12 @@
 {{ $topic->title}} | @parent
 @stop
 
-@section('wechat_icon')
-<img src="{{ img_crop($machine->cover, 512, 512) }}" alt="">
-@stop
+
 
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.4/css/highcharts.css">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/JavaScript" src="http://code.highcharts.com/stock/highstock.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/js/modules/exporting.js"></script>
+
+
+
 <div class="blog-pages">
 
           <div class="col-md-9 left-col pull-right">
@@ -25,11 +22,7 @@
                         {{ $topic->title }}
                     </h1>
 
-                    <!--@if ($topic->is_draft == 'yes')
-                        <div class="text-center alert alert-warning">
-                            当前状态为 <i class="fa fa-file-text-o"></i> 草稿，仅作者可见，请前往 <a href="{{ route('discussions.edit', $topic->id) }}" class="no-pjax">编辑发布</a>
-                        </div>
-                    @endif-->
+
 
                     <div class="article-meta text-center">
                         <i class="fa fa-clock-o"></i> <abbr title="{{ $topic->created_at }}" class="timeago">{{ $topic->created_at }}</abbr>
@@ -42,13 +35,17 @@
 
                     </div>
 
+                    @if($point != 0)
+                    {!! Charts::assets() !!}
+                    <div class="form-group">
+                       {!! $chart->render() !!}
+                     </div>
+                     @endif
+
                     <div class="entry-content">
-                      @if($point != 0)
-                      <div>
-                         {!! $chart->render() !!}
-                       </div>
-                       @endif
+
                         @include('topics.partials.body', array('body' => $topic->body))
+
                     </div>
                     <div class="post-info-panel">
                         <p class="info">

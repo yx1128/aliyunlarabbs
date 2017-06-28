@@ -4,17 +4,14 @@
 {{ $machine->name }} | @parent
 @stop
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.4/css/highcharts.css">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/JavaScript" src="http://code.highcharts.com/stock/highstock.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.2/js/modules/exporting.js"></script>
+ {!! Charts::assets() !!}
        <div class="blog-pages">
 
          <div class="col-md-12 panel">
 
              <div class="panel-body">
 
-               <h2 class="text-center">{{ $machine->name }}-{{$points->name}}测点讨论</h2>
+               <h2 class="text-center">{{ $machine->name }}-{{$points->name}}测点讨论{{$start}}-{{$end}}</h2>
 
                <hr>
                    @include('layouts.partials.errors')
