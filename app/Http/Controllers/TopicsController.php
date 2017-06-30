@@ -138,7 +138,15 @@ class TopicsController extends Controller implements CreatorListener
             $userTopics = $machine->topics()->withoutDraft()->onlyArticle()->orderBy('vote_count', 'desc')->limit(5)->get();
             $point = $topic->point_id;
           if ($point != 0){
-            $values = Value::where('point_id', $point )->get();
+            $start = $topic->start;
+            $end = $topic->end;
+
+           if($start != 0 && $end != 0){
+             $values = Value::where('point_id', $point )->whereBetween('created_at', [$start, $end])->get();
+           }else{
+             $values = Value::where('point_id', $point )->get();
+           }
+
             $pointid = Point::findOrFail($point);
             $data = $values->lists('value')->toArray();
             $time = $values->lists('created_at')->toArray();

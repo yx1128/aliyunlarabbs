@@ -26,6 +26,8 @@
 
                        <input name="category_id" type="hidden" value="{{ config('phphub.machine_category_id') }}">
                        <input name="point_id" type="hidden" value="{{ $num }}">
+                       <input name="start" type="hidden" value="{{ $start }}">
+                       <input name="end" type="hidden" value="{{ $end}}">
 
                        @if (isset($machine))
                            <input name="machine_id" type="hidden" value="{{ $machine->id }}">

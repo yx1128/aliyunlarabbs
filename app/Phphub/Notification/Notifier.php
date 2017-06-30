@@ -1,4 +1,5 @@
-<?php namespace Phphub\Notification;
+<?php
+namespace Phphub\Notification;
 
 use Phphub\Forms\ReplyCreationForm;
 use Phphub\Core\CreatorListener;

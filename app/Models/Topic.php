@@ -58,7 +58,9 @@ class Topic extends Model
         'category_id',
         'created_at',
         'updated_at',
-        'point_id'
+        'point_id',
+        'start',
+        'end'
     ];
 
     public static function boot()
