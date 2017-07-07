@@ -6,6 +6,18 @@
 
 @section('content')
 <link rel="stylesheet" href="http://phphub5.app//build/assets/css/bootstrap-datetimepicker.min.css">
+<style type="text/css">
+.normal{
+    color: #0F3; background-color: #000000; width: 80px;
+    border-top-style: ridge; border-right-style: ridge;border-bottom-style: ridge;border-left-style: ridge;
+    border-top-color: #999;border-right-color: #999; border-bottom-color: #999; border-left-color: #999;
+}
+.warn{
+    color: #F00; background-color: #000000; width: 80px;
+    border-top-style: ridge; border-right-style: ridge;border-bottom-style: ridge;border-left-style: ridge;
+    border-top-color: #999;border-right-color: #999; border-bottom-color: #999; border-left-color: #999;
+ }
+ </style>
 <div class="blog-pages">
 
 
@@ -51,6 +63,23 @@
                 @if($machine->image != null)
                   @include('machines._images')
                 @endif
+                <hr>
+                <h4>设备实时值</h4>
+                <hr>
+                 <ul>
+
+                @foreach ($points as $point)
+                <li><a href="{{ route('values.show', [$point->values->last()->id]) }}">
+                  @if($point->values->last()->is_warned != 1)
+                  <input type="button" class="normal" value="{{$point->values->last()->value}}"/>
+                  @else
+                  <input type="button" class="warn" value="{{$point->values->last()->value}}"/>
+                    @endif
+                    </a>
+                  &nbsp;&nbsp;{{$point->name}}
+                  <span style=" float:right">更新时间&nbsp;&nbsp;：&nbsp;&nbsp;{{$point->values->last()->created_at}}<span></li>
+                @endforeach
+              </ul>
                 </div>
               </div>
       <div class="panel article-body article-index">

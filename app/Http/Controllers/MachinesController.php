@@ -36,7 +36,7 @@ class MachinesController extends Controller
     public function show($id)
        {
          $machine = Machine::findOrFail($id);
-         $value = Value::where('is_warned', 1)->first();
+         //$values = $machines->points->values;
          $user   = $machine->user;
          $points =  $machine->points;
          $topics = $machine->topics()->withoutDraft()->recent()->paginate(28);

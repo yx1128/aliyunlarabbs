@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Value;
+use App\Models\Machine;
+use App\Models\Topic;
+use App\Models\User;
 use Charts;
+use Auth;
+use Flash;
 use Carbon\Carbon;
 
 class ValuesController extends Controller
@@ -33,8 +38,10 @@ class ValuesController extends Controller
         ->dimensions(1100,600)
         ->responsive(false);
 
+     $user = Auth::user();
+     $topic = new Topic;
 
-    return view('machines.warnshow',compact('point','values','machine','chart','warntime','start','end'));
+    return view('machines.warnshow',compact('point','values','machine','chart','warntime','start','end','user','topic'));
   }
 
 }
