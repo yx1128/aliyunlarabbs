@@ -144,7 +144,7 @@ class User extends Model implements AuthenticatableContract,
 
     public function notifications()
     {
-        return $this->hasMany(Notification::class)->recent()->with('topic', 'fromUser')->paginate(20);
+        return $this->hasMany(Notification::class)->recent()->with('topic', 'fromUser', 'fromValue')->paginate(20);
     }
 
     public function revisions()

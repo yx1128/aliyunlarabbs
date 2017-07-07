@@ -27,6 +27,30 @@
                 <ul class="list-group row">
                     @foreach ($notifications as $notification)
                      <li class="list-group-item media" style="margin-top: 0px;">
+                       @if ($notification->point_id != '0')
+                       <div class="avatar pull-left">
+                           <a href="{{ route('machines.show', [$notification->fromValue->point->machine->id]) }}">
+                               <img class="media-object img-thumbnail avatar" alt="{{{ $notification->fromValue->point->machine }}}" src="{{ $notification->fromValue->point->machine->cover }}"  style="width:38px;height:38px;"/>
+                           </a>
+                       </div>
+                       <div class="infos">
+
+                         <div class="media-heading">
+
+                            你关注的设备-
+                            <a href="{{ route('machines.show', [$notification->fromValue->point->machine->id]) }}">
+                                {{{ $notification->fromValue->point->machine->name }}}
+                            </a>-在测点
+                            <a href="{{ route('values.show', [$notification->fromValue->id]) }}">
+                              {{  $notification->fromValue->point->name }}
+                            </a>
+                            发生了报警值为
+                            <span style="color:#F00">{{ $notification->fromValue->value}}</span>的报警
+
+                            <span class="meta">
+                                 • {{ lang('at') }} • <span class="timeago">{{ $notification->fromValue->created_at }}</span>
+                            </span>
+                         @else
 
                         @if ((count($notification->topic) || $notification->type=='follow') && count($notification->fromUser))
                             <div class="avatar pull-left">
@@ -69,6 +93,7 @@
                         @else
                           <div class="deleted text-center">{{ lang('Data has been deleted.') }}</div>
                         @endif
+                    @endif
                     </li>
                     @endforeach
                 </ul>

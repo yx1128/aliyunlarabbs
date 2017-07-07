@@ -6,8 +6,10 @@ Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/machines', 'MachinesController@index')->name('machines.index');
 Route::get('/machines/{id}', 'MachinesController@show')->name('machines.show');
 Route::post('/machines', 'MachinesController@search')->name('machines.search');
+Route::post('/machines/warn', 'MachinesController@warn')->name('machines.warn');
 Route::post('/machines/{machine}/subscribe', 'MachinesController@subscribe')->name('machines.subscribe');
 Route::post('/machines/{machine}/unsubscribe', 'MachinesController@unsubscribe')->name('machines.unsubscribe');
+Route::get('/values/{id}', 'ValuesController@show')->name('values.show');
 
 Route::get('/points', 'PointsController@index')->name('points.index');
 // Discussion

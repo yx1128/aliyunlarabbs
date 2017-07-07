@@ -9,12 +9,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Machine;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Notification;
 use App\Models\Point;
 use App\Models\Value;
 use Auth;
 use Flash;
 use Charts;
 use App\Activities\UserSubscribedMachine;
+use Carbon\Carbon;
 
 
 class MachinesController extends Controller
@@ -34,11 +36,12 @@ class MachinesController extends Controller
     public function show($id)
        {
          $machine = Machine::findOrFail($id);
+         $value = Value::where('is_warned', 1)->first();
          $user   = $machine->user;
-         $points = $machine->points;
+         $points =  $machine->points;
          $topics = $machine->topics()->withoutDraft()->recent()->paginate(28);
          $authors = $machine->authors;
-         return view('machines.show', compact('machine','user','topics','authors','points'));
+         return view('machines.show', compact('machine','topics','authors','points','users'));
        }
 
     public function search(Request $request)
@@ -72,11 +75,23 @@ class MachinesController extends Controller
          return view('machines.search',compact('num','values','id','machine','chart','topic','user','points','start','end'));
        }
        else{
-         Flash::error("无该测点信息");
+         Flash::error("请选择测点信息");
          return redirect()->back();
        }
       }
 
+      public function warn()
+      {
+          $values = Value::where('is_warned', 1)->get();
+          foreach ($values as $value ){
+
+          $users = $value->point->machine->subscribers;
+          Notification::notified('machine_warned', $users, $value);
+        }
+
+          return redirect()->back();
+
+      }
 
     public function subscribe($id)
        {

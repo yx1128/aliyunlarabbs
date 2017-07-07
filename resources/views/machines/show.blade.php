@@ -33,7 +33,7 @@
                               <select class="form-control" name="point">
                                 <option value="" disabled {{ 'selected' }}>选择测点</option>
                                 @foreach ($points as $point)
-                                <option value="{{ $point->id }}">{{ $point->name }}</option>
+                                 <option value="{{ $point->id }}">{{ $point->name }}</option>
                                 @endforeach
                              </select>
                          </div>

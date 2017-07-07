@@ -8,6 +8,9 @@ class NotificationPresenter extends Presenter
     public function lableUp()
     {
         switch ($this->type) {
+            case 'machine_warned':
+                $label = "发生了报警";
+                break;
             case 'new_topic_from_subscribers':
                 $lable = "在你关注的设备中发布了";
                 break;

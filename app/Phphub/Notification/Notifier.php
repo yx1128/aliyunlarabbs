@@ -12,6 +12,9 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Append;
 use App\Jobs\SendReplyNotifyMail;
+use App\Models\Point;
+use App\Models\Value;
+use App\Models\Machine;
 
 class Notifier
 {
@@ -40,6 +43,8 @@ class Notifier
                         $fromUser,
                         $this->removeDuplication($topic->user->blogs->first()->subscribers),
                         $topic);
+
+        // Notify machine subscriber
         }
         if (count($topic->machines)) {
             Notification::batchNotify(

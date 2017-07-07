@@ -14,7 +14,7 @@ class Notification extends Model
     public $presenter = 'Phphub\Presenters\NotificationPresenter';
 
     // Don't forget to fill this array
-    protected $fillable = ['from_user_id','user_id','topic_id','reply_id','body','type'];
+    protected $fillable = ['from_user_id','user_id','topic_id','reply_id','body','type','point_id'];
 
     public function user()
     {
@@ -30,6 +30,11 @@ class Notification extends Model
     public function fromUser()
     {
         return $this->belongsTo(User::class, 'from_user_id');
+    }
+
+    public function fromValue()
+    {
+        return $this->belongsTo(Value::class, 'point_id');
     }
 
     // for api
@@ -84,6 +89,41 @@ class Notification extends Model
         }
     }
 
+    public static function notified($type, $users, Value $fromValue)
+     {
+          $nowTimestamp = Carbon::now()->toDateTimeString();
+          $data = [];
+          foreach ($users as $toUser) {
+
+            $data[] = [
+               'from_user_id' => 0,
+               'user_id'      => $toUser->id,
+               'topic_id'     => 0,
+               'reply_id'     => 0,
+               'body'         => '',
+               'type'         => $type,
+               'created_at'   => $nowTimestamp,
+               'updated_at'   => $nowTimestamp,
+               'point_id'     => $fromValue->id
+             ];
+
+                $toUser->increment('notification_count', 1);
+
+                $fromValue->is_warned = 0;
+                $fromValue->save();
+
+            }
+
+            if (count($data)) {
+              foreach ($data as $value) {
+                  Notification::insert($value);
+              }
+            }
+
+              //self::pushNotification($data);
+
+   }
+
     public function scopeRecent($query)
     {
         return $query->orderBy('created_at', 'desc');
@@ -109,7 +149,8 @@ class Notification extends Model
             'body'         => $reply ? $reply->body : '',
             'type'         => $type,
             'created_at'   => $nowTimestamp,
-            'updated_at'   => $nowTimestamp
+            'updated_at'   => $nowTimestamp,
+            'point_id'     => 0
         ];
 
         $toUser->increment('notification_count', 1);

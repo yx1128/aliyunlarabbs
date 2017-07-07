@@ -58,6 +58,12 @@
                                 <i class="fa fa-comment text-md"></i> 发起讨论
                             </a>
                         </li>
+
+                        <li>
+                            <a data-method="post" class="button no-pjax" href="javascript:void(0);" data-url="{{ route('machines.warn') }}">
+                                <i class="fa fa-warning text-md"></i> 刷新报警
+                            </a>
+                        </li>
                     </ul>
               </li>
 

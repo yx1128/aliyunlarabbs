@@ -13,7 +13,7 @@
 
 
           @foreach ($points as $point)
-            <h1>{{ $point->name }}</h1>
+            <h1>{{ $point->name }}-{{$point->machine->name}}</h1>
           @endforeach
 
 

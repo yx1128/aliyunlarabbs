@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Topic;
 use App\Models\Reply;
+use App\Models\Point;
+use App\Models\Value;
 use Illuminate\Http\Request;
 use Phphub\Github\GithubUserDataReader;
 use Cache;
@@ -40,9 +42,9 @@ class UsersController extends Controller
         $topics  = Topic::whose($user->id)->withoutArticle()->withoutBoardTopics()->recent()->limit(20)->get();
         $articles  = Topic::whose($user->id)->onlyArticle()->withoutDraft()->recent()->with('blogs')->limit(20)->get();
         $blog  = $user->blogs()->first();
-        $machines = $user->machines()->first();
+        //$machines = $user->machines()->first();
         $replies = Reply::whose($user->id)->recent()->limit(20)->get();
-        return view('users.show', compact('user','blog', 'articles', 'topics', 'replies','machines'));
+        return view('users.show', compact('user','blog', 'articles', 'topics', 'replies'));
     }
 
     public function edit($id)
@@ -122,7 +124,7 @@ class UsersController extends Controller
     public function subscribers($id)
     {
         $user  = User::findOrFail($id);
-        $machines = $user->subscriber()->orderBy('id', 'desc')->paginate(15);
+        $machines = $user->subscriber()->orderBy('id', 'desc')->get();
 
         return view('users.mcsubscribers', compact('user', 'machines'));
     }
