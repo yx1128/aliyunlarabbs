@@ -3,8 +3,14 @@
 @section('title')
 {{ $machine->name }} | @parent
 @stop
-@section('content')
+
+@section('styles')
  {!! Charts::assets() !!}
+ @stop
+
+@section('content')
+
+
        <div class="blog-pages">
 
          <div class="col-md-12 panel">
@@ -149,4 +155,5 @@
                });
            });
        </script>
+
 @stop

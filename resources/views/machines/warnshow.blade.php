@@ -4,8 +4,12 @@
 {{$machine->name}}报警趋势图 _@parent
 @stop
 
+@section('styles')
+ {!! Charts::assets() !!}
+ @stop
+ 
 @section('content')
-{!! Charts::assets() !!}
+
 
 <div class="blog-pages">
 

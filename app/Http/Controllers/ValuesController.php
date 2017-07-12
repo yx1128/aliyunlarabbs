@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Value;
+use App\Models\Point;
 use App\Models\Machine;
 use App\Models\Topic;
 use App\Models\User;

@@ -4,8 +4,7 @@
 {{ $machine->name }} | @parent
 @stop
 
-@section('content')
-<link rel="stylesheet" href="http://phphub5.app//build/assets/css/bootstrap-datetimepicker.min.css">
+@section('styles')
 <style type="text/css">
 .normal{
     color: #0F3; background-color: #000000; width: 80px;
@@ -18,6 +17,10 @@
     border-top-color: #999;border-right-color: #999; border-bottom-color: #999; border-left-color: #999;
  }
  </style>
+@stop
+
+@section('content')
+
 <div class="blog-pages">
 
 
@@ -132,10 +135,15 @@
 
 
 </div>
+
+
+@stop
 @section('scripts')
+<link rel="stylesheet" href="http://phphub5.app//build/assets/css/bootstrap-datetimepicker.min.css">
 <script  type="text/javascript" src="http://phphub5.app//build/assets/js/bootstrap-datetimepicker.min.js"></script>
 <script  type="text/javascript" src="http://phphub5.app//build/assets/js/bootstrap-datetimepicker.zh-CN.js"></script>
     <script type="text/javascript">
+     $(function () {
         $("#datetimeStart").datetimepicker({
             format: 'yyyy-mm-dd hh:ii:ss',
             minView:'hour',
@@ -152,7 +160,6 @@
         }).on("click",function(){
             $("#datetimeEnd").datetimepicker("setStartDate",$("#datetimeStart".val()))
         });
+       });
     </script>
-@stop
-
 @stop
