@@ -13,11 +13,11 @@ class RepliesTableSeeder extends Seeder
         $topics = Topic::lists('id')->toArray();
         $faker  = app(Faker\Generator::class);
 
-        $replies = factory(Reply::class)->times(rand(300, 500))->make()->each(function ($reply) use ($faker, $users, $topics) {
+        $replies = factory(Reply::class)->times(rand(30, 50))->make()->each(function ($reply) use ($faker, $users, $topics) {
             $reply->user_id  = $faker->randomElement($users);
             $reply->topic_id = $faker->randomElement($topics);
         });
-        
+
         Reply::insert($replies->toArray());
     }
 }

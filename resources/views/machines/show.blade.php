@@ -26,6 +26,28 @@
 
         <div class="col-md-3 main-col pull-left">
             @include('machines._info')
+
+            <div class="panel panel-default corner-radius" style="padding-bottom: 20px;">
+
+                <div class="panel-heading text-center">
+                    <h3 class="panel-title">设备负责人</h3>
+                </div>
+
+             <div class="panel-body text-center topic-author-box blog-info text-center">
+                <a class="" href="{{ route('users.show', [$user->id]) }}" title="{{{ $user->name . ($user->introduction ? ' - ' . $user->introduction : '') }}}">
+                   <img class=" img-thumbnail avatar avatar-middle" alt="{{{ $user->name }}}" src="{{ $user->present()->gravatar }}"/>
+               </a>
+
+            @if(Auth::check() && $currentUser->id != $user->id)
+            <hr>
+             <a class="btn btn-default btn-block" href="{{ route('messages.create', $user->id) }}" >
+                <i class="fa fa-envelope-o"></i> 联系负责人
+             </a>
+           @endif
+             </div>
+
+            </div>
+
         </div>
 
           <div class="col-md-9 left-col pull-right">
@@ -68,21 +90,22 @@
                 @endif
                 <hr>
                 <h4>设备实时值</h4>
-                <hr>
-                 <ul>
+                <ul>
 
-                @foreach ($points as $point)
-                <li><a href="{{ route('values.show', [$point->values->last()->id]) }}">
-                  @if($point->values->last()->is_warned != 1)
-                  <input type="button" class="normal" value="{{$point->values->last()->value}}"/>
-                  @else
-                  <input type="button" class="warn" value="{{$point->values->last()->value}}"/>
-                    @endif
-                    </a>
-                  &nbsp;&nbsp;{{$point->name}}
-                  <span style=" float:right">更新时间&nbsp;&nbsp;：&nbsp;&nbsp;{{$point->values->last()->created_at}}<span></li>
-                @endforeach
-              </ul>
+              @foreach ($points as $point)
+              <li><a href="{{ route('values.show', [$point->values->last()->id]) }}">
+                @if($point->values->last()->is_warned != 1)
+                <input type="button" class="normal" value="{{$point->values->last()->value}}"/>
+                @else
+                <input type="button" class="warn" value="{{$point->values->last()->value}}"/>
+                  @endif
+                  </a>
+                &nbsp;&nbsp;{{$point->name}}
+                <span style=" float:right">更新时间&nbsp;&nbsp;：&nbsp;&nbsp;{{$point->values->last()->created_at}}<span></li>
+              @endforeach
+   </ul>
+                <hr>
+
                 </div>
               </div>
       <div class="panel article-body article-index">

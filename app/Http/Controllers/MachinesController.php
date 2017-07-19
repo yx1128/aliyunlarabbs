@@ -36,12 +36,11 @@ class MachinesController extends Controller
     public function show($id)
        {
          $machine = Machine::findOrFail($id);
-         //$values = $machines->points->values;
          $user   = $machine->user;
          $points =  $machine->points;
          $topics = $machine->topics()->withoutDraft()->recent()->paginate(28);
          $authors = $machine->authors;
-         return view('machines.show', compact('machine','topics','authors','points','users'));
+         return view('machines.show', compact('machine','topics','authors','points','user'));
        }
 
     public function search(Request $request)

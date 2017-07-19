@@ -19,10 +19,11 @@ use Carbon\Carbon;
 */
 
 $factory->define(User::class, function (Faker\Generator $faker) {
+   $faker = Faker\Factory::create('zh_CN');
     return [
         'github_url'           => $faker->url,
         'city'                 => $faker->city,
-        'name'                 => $faker->userName,
+        'name'                 => $faker->name,
         'github_name'          => $faker->userName,
         'twitter_account'      => $faker->userName,
         'company'              => $faker->userName,

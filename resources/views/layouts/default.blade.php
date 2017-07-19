@@ -86,14 +86,10 @@
 
 
 
-       <script src="{{ cdn(elixir('assets/js/scripts.js')) }}"></script>
+			 <script src="{{ cdn(elixir('assets/js/scripts.js')) }}"></script>
 
-			 <script type="text/javascript">
-					 setInterval(function() {
-							$("#warn").load(location.href+" #warn>*","");
-							$.post("{{ route('machines.warn') }}");
-						}, 4000);
-			 </script>
+
+
 
 	    @yield('scripts')
 

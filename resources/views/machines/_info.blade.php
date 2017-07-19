@@ -1,11 +1,12 @@
 <div class="panel panel-default corner-radius">
          <div class="panel-body text-center topic-author-box blog-info">
 
-           <div class="image blog-cover">
+          <div class="image blog-cover">
              <a href="{{ route('machines.show', $machine->id )}}">
-              <img class=" avatar-112 avatar img-thumbnail" src="{{ img_crop($machine->cover, 224, 224) }}">
+                <img class=" avatar-112 avatar img-thumbnail" src="{{ img_crop($machine->cover, 224, 224) }}">
             </a>
           </div>
+
           <div class="blog-name">
             <h4><a href="{{ route('machines.show', $machine->id )}}">{{ $machine->name }}</a></h4>
           </div>
