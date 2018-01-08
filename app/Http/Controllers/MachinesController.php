@@ -24,7 +24,7 @@ class MachinesController extends Controller
 
     public function __construct()
       {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
       }
 
     public function index()
@@ -36,8 +36,8 @@ class MachinesController extends Controller
     public function show($id)
        {
          $machine = Machine::findOrFail($id);
-         $user   = $machine->user;
-         $points =  $machine->points;
+         $user = $machine->user;
+         $points = $machine->points;
          $topics = $machine->topics()->withoutDraft()->recent()->paginate(28);
          $authors = $machine->authors;
          return view('machines.show', compact('machine','topics','authors','points','user'));
@@ -45,15 +45,15 @@ class MachinesController extends Controller
 
     public function search(Request $request)
       {
-         $num =$request->input('point');
+         $num = $request->input('point');
          $start = $request->input('startTime');
          $end = $request->input('endTime');
          if($num != null){
          $id = $request->input('machineid');
          if($start != null && $end != null){
-         $values = Value::where('point_id', $num )->whereBetween('created_at', [$start, $end])->get();
+         $values = Value::with('point')->where('point_id', $num )->whereBetween('created_at', [$start, $end])->get();
        }else{
-         $values = Value::where('point_id', $num )->get();
+         $values = Value::with('point')->where('point_id', $num )->orderBy('created_at','DESC')->paginate(30);
        }
          $points = Point::findOrFail($num);
 

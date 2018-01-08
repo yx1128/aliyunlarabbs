@@ -183,6 +183,7 @@ return [
         Naux\Mail\SendCloudServiceProvider::class,
         Cmgmyr\Messenger\MessengerServiceProvider::class,
         Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         // API
         Dingo\Api\Provider\LaravelServiceProvider::class,
@@ -241,6 +242,7 @@ return [
 
 
         'Charts'    => ConsoleTVs\Charts\Facades\Charts::class,
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Purifier'  => Mews\Purifier\Facades\Purifier::class,
         'Image'     => Intervention\Image\Facades\Image::class,
         'Rss'       => Thujohn\Rss\RssFacade::class,

@@ -24,7 +24,7 @@ class AuthController extends Controller implements UserCreatorListener
 {
     use VerifiesUsers,SocialiteHelper,AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $redirectTo = '/topics/home';
+    protected $redirectTo = '/topics';
 
     /**
      * Create a new authentication controller instance.

@@ -3,6 +3,7 @@
 namespace App\Models\Traits;
 
 use App\Models\Activity;
+use Cache;
 
 trait UserActivityHelper
 {
@@ -32,8 +33,11 @@ trait UserActivityHelper
 
     public function activitiesByCausers($causers)
     {
-        return Activity::whereIn('causer', $causers)
-                    ->recent()
-                    ->paginate(50);
+         return Activity::with('user')
+                        ->whereIn('causer', $causers)
+                        ->recent()
+                        ->paginate(30);
+
+
     }
 }

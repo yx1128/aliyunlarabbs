@@ -23,8 +23,8 @@ class ValuesController extends Controller
   {
     $value = Value::findOrFail($id);
     $warntime = $value->created_at;
-    $start = $value->created_at->subDays(2);
-    $end = $value->created_at->addDays(2);
+    $start = $value->created_at->subDays(3);
+    $end = $value->created_at->addDays(3);
     $point = $value->point;
     $machine = $point->machine;
     $values = Value::where('point_id', $point->id )->whereBetween('created_at', [$start , $end])->get();

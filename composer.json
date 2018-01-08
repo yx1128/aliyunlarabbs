@@ -44,7 +44,8 @@
         "cmgmyr/messenger": "^2.13",
         "overtrue/laravel-filesystem-qiniu": "^0.0.1",
         "caouecs/laravel-lang": "~3.0",
-        "consoletvs/charts": "3.*"
+        "consoletvs/charts": "3.*",
+        "barryvdh/laravel-debugbar": "~2.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -71,6 +71,10 @@ class Topic extends Model
             SiteStatus::newTopic();
         });
 
+        static::saving(function($model) {
+            Cache::forget('phphub_topics');
+        });
+
 
 
     }
@@ -230,6 +234,14 @@ class Topic extends Model
         $params = array_merge([$this->id, $this->slug], $params);
         $names = $this->isDiscussion() ? 'discussions.show' : 'topics.show';
         return route($names, $params);
+    }
+
+    public static function allFromCache($expire = 1440)
+    {
+      return Cache::remember('phphub_topics', 60, function () {
+          return self::where('is_blocked', 'no')->orderBy('created_at', 'desc')->get();
+      });
+
     }
 
 

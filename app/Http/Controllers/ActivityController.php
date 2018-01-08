@@ -17,7 +17,7 @@ class ActivityController extends Controller
 	{
         switch ($request->view) {
             case 'all':
-                $activities = Activity::recent()->paginate(50);
+                $activities = Activity::recent()->paginate(30);
                 break;
 
             case 'mine':

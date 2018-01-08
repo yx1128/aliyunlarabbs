@@ -118,3 +118,15 @@
   </div>
 
 @stop
+
+@section('scripts')
+<script type="text/javascript">
+
+    $(document).ready(function()
+    {
+        Config.following_users =  @if($currentUser) {!!$currentUser->present()->followingUsersJson()!!} @else [] @endif;
+        PHPHub.initAutocompleteAtUser();
+    });
+
+</script>
+@stop

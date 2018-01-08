@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Cache;
 
 class Activity extends Model
 {
     protected $fillable = ['causer', 'indentifier', 'type', 'data'];
+
 
     public function user()
     {
@@ -21,5 +23,13 @@ class Activity extends Model
     public function getDataAttribute($value)
     {
         return unserialize($value);
+    }
+
+    public static function allFromCache($expire = 1440)
+    {
+      return Cache::remember('phphub_activities', $expire, function () {
+            return Cache::get('phphub_activities');
+      });
+
     }
 }

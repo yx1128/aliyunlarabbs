@@ -16,7 +16,7 @@
 
     <div id="top-navbar-collapse" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-      <li class="{{ (Request::is('topics*') && !Request::is('categories*') ? ' active' : '') }}"><a href="{{ route('topics.home') }}">{{ lang('Topics') }}</a></li>
+         <li class="{{ (Request::is('topics') && ! Request::is('categories*') ? ' active' : '') }}"><a href="{{ route('topics.index') }}">{{ lang('Topics') }}</a></li>
         <li class="{{ Request::is('categories/'.config('phphub.blog_category_id')) ? ' active' : '' }}"><a href="{{ route('categories.show', config('phphub.blog_category_id')) }}">专栏</a></li>
         <li class="{{ Request::is('categories/'.config('phphub.qa_category_id')) ? ' active' : '' }}"><a href="{{ route('categories.show', config('phphub.qa_category_id')) }}">问答</a></li>
           <li class="{{ Request::is('categories/'.config('phphub.machine_category_id')) ? ' active' : '' }}"><a href="{{ route('categories.show', config('phphub.machine_category_id')) }}">设备</a></li>

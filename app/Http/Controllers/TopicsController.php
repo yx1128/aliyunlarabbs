@@ -40,16 +40,11 @@ class TopicsController extends Controller implements CreatorListener
 
     }
 
-    public function home( Topic $topic )
+    public function home(Topic $topic )
     {
-        $news = $topic->where('category_id' , 1)->orderBy('created_at', 'desc')->paginate(7);
-        $questions = $topic->where('category_id' , 4)->orderBy('created_at', 'desc')->paginate(7);
-        $shares = $topic->where('category_id' , 5)->orderBy('created_at', 'desc')->paginate(7);
-        $courses = $topic->where('category_id' , 6)->orderBy('created_at', 'desc')->paginate(7);
-        $blogs = $topic->where('category_id' , 8)->orderBy('created_at', 'desc')->paginate(7);
-        $machines = $topic->where('category_id' , 9)->orderBy('created_at', 'desc')->paginate(7);
+        $topics = Topic::allFromCache();
 
-        return view('topics.home', compact('news', 'questions', 'shares', 'courses', 'blogs', 'machines'));
+        return view('topics.home', compact('topics'));
     }
 
     public function index(Request $request, Topic $topic)
@@ -142,9 +137,9 @@ class TopicsController extends Controller implements CreatorListener
             $end = $topic->end;
 
            if($start != 0 && $end != 0){
-             $values = Value::where('point_id', $point )->whereBetween('created_at', [$start, $end])->get();
+             $values = Value::with('point')->where('point_id', $point )->whereBetween('created_at', [$start, $end])->get();
            }else{
-             $values = Value::where('point_id', $point )->get();
+             $values = Value::with('point')->where('point_id', $point )->get();
            }
 
             $pointid = Point::findOrFail($point);

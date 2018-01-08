@@ -47,7 +47,7 @@ class Notification extends Model
      * Create a notification
      * @param  [type] $type     currently have 'at', 'new_reply', 'attention', 'append'
      * @param  User   $fromUser come from who
-     * @param  array   $users   to who, array of users
+     * @param  array  $users   to who, array of users
      * @param  Topic  $topic    cuurent context
      * @param  Reply  $reply    the content
      * @return [type]           none
