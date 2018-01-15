@@ -129,7 +129,7 @@ class TopicsController extends Controller implements CreatorListener
                                 'votedUsers', 'userTopics', 'revisionHistory'));
         } elseif ($topic->isDiscussion()) {
             $user = $topic->user;
-            $machine = $topic->machines()->first();
+            $machine = $topic->machines()->firstOrFail();
             $userTopics = $machine->topics()->withoutDraft()->onlyArticle()->orderBy('vote_count', 'desc')->limit(5)->get();
             $point = $topic->point_id;
           if ($point != 0){

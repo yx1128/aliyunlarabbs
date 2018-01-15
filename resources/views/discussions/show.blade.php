@@ -4,9 +4,7 @@
 {{ $topic->title}} | @parent
 @stop
 
-@section('styles')
- {!! Charts::assets() !!}
- @stop
+
 
 @section('content')
 
@@ -39,9 +37,10 @@
 
                     @if($point != 0)
 
-                    <div class="form-group">
+                    <center>
                        {!! $chart->render() !!}
-                     </div>
+                    </center>
+
                      @endif
 
                     <div class="entry-content">

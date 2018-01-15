@@ -4,9 +4,7 @@
 {{ $machine->name }} | @parent
 @stop
 
-@section('styles')
- {!! Charts::assets() !!}
- @stop
+
 
 @section('content')
 
@@ -30,17 +28,17 @@
                    @endif
                        {!! csrf_field() !!}
 
-                       <input name="category_id" type="hidden" value="{{ config('phphub.machine_category_id') }}">
-                       <input name="point_id" type="hidden" value="{{ $num }}">
-                       <input name="start" type="hidden" value="{{ $start }}">
-                       <input name="end" type="hidden" value="{{ $end}}">
+                       <input name="category_id" type="hidden" value="{{ config('phphub.machine_category_id') }}"/>
+                       <input name="point_id" type="hidden" value="{{ $num }}"/>
+                       <input name="start" type="hidden" value="{{ $start }}"/>
+                       <input name="end" type="hidden" value="{{ $end }}"/>
 
                        @if (isset($machine))
                            <input name="machine_id" type="hidden" value="{{ $machine->id }}">
                        @endif
 
                        <div class="form-group">
-                           <input class="form-control" id="article-title" placeholder="{{ lang('Please write down a topic') }}" name="title" type="text" value="{{ old('title') ?: $topic->title }}" required="require">
+                           <input class="form-control" id="article-title" placeholder="{{ lang('Please write down a topic') }}" name="title" type="text" value="{{ old('title') ?: $topic->title }}" required="require"/>
                        </div >
                         <div class="form-group" style="border:1px solid #E8E8E8 ; border-radius:8px">
                           {!! $chart->render() !!}

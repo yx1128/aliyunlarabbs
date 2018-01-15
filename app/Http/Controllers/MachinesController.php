@@ -53,7 +53,7 @@ class MachinesController extends Controller
          if($start != null && $end != null){
          $values = Value::with('point')->where('point_id', $num )->whereBetween('created_at', [$start, $end])->get();
        }else{
-         $values = Value::with('point')->where('point_id', $num )->orderBy('created_at','DESC')->paginate(30);
+         $values = Value::with('point')->where('point_id', $num )->get();
        }
          $points = Point::findOrFail($num);
 

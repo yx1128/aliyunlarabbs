@@ -13,9 +13,13 @@
 		<meta name="description" content="@section('description') Laravel China 是国内最大的 Laravel 和 PHP 中文社区，致力于推动 Laravel，PHP7、php-fig 等 PHP 新技术，新理念在中国的发展，是国内最靠谱的 PHP 论坛。 @show" />
         <meta name="_token" content="{{ csrf_token() }}">
 
-       <link rel="stylesheet" href="{{ cdn(elixir('assets/css/styles.css')) }}">
+       <link rel="stylesheet" href="http://phphub5.app/build/assets/css/highcharts.css"/>
+       <link rel="stylesheet" href="{{ cdn(elixir('assets/css/styles.css')) }}"/>
 
         <link rel="shortcut icon" href="{{ cdn('favicon1.png') }}"/>
+
+				<script src="http://phphub5.app/build/assets/js/jquery-3.1.1.min.js"></script>
+
 
         <script>
             Config = {
@@ -41,6 +45,7 @@
 	    @yield('styles')
 
 		<meta http-equiv="x-pjax-version" content="{{ elixir('assets/css/styles.css') }}">
+
 
 
 
@@ -87,6 +92,7 @@
 
 
 			 <script src="{{ cdn(elixir('assets/js/scripts.js')) }}"></script>
+
 
 
 

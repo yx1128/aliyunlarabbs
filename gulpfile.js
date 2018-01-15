@@ -30,6 +30,10 @@ var basejs = [
     'resources/assets/js/vendor/jquery.highlight.js',
     'resources/assets/js/vendor/jquery.sticky.js',
     'resources/assets/js/vendor/sweetalert.js',
+    'resources/assets/js/vendor/highstock.js',
+    'resources/assets/js/vendor/exporting.js',
+    'resources/assets/js/vendor/bootstrap-datetimepicker.min.js',
+    'resources/assets/js/vendor/bootstrap-datetimepicker.zh-CN.js',
     'node_modules/social-share.js/dist/js/social-share.min.js',
 ];
 

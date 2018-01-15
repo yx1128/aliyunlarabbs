@@ -4,10 +4,8 @@
 {{$machine->name}}报警趋势图 _@parent
 @stop
 
-@section('styles')
- {!! Charts::assets() !!}
- @stop
- 
+
+
 @section('content')
 
 
@@ -28,27 +26,28 @@
 
             @if ($topic->id > 0)
             <form method="POST" action="{{ route('topics.update', $topic->id) }}" accept-charset="UTF-8" id="article-edit-form">
-                <input name="_method" type="hidden" value="PATCH">
+                <input name="_method" type="hidden" value="PATCH"/>
             @else
                 <form method="POST" action="{{ route('discussions.store') }}" accept-charset="UTF-8" id="article-create-form">
             @endif
                 {!! csrf_field() !!}
 
-                <input name="category_id" type="hidden" value="{{ config('phphub.machine_category_id') }}">
-                <input name="point_id" type="hidden" value="{{ $point->id }}">
-                <input name="start" type="hidden" value="{{ $start }}">
-                <input name="end" type="hidden" value="{{ $end}}">
+                <input name="category_id" type="hidden" value="{{ config('phphub.machine_category_id') }}"/>
+                <input name="point_id" type="hidden" value="{{ $point->id }}"/>
+                <input name="start" type="hidden" value="{{ $start }}"/>
+                <input name="end" type="hidden" value="{{ $end}}"/>
 
                 @if (isset($machine))
-                    <input name="machine_id" type="hidden" value="{{ $machine->id }}">
+                    <input name="machine_id" type="hidden" value="{{ $machine->id }}"/>
                 @endif
 
                 <div class="form-group">
-                    <input class="form-control" id="article-title" placeholder="{{ lang('Please write down a topic') }}" name="title" type="text" value="{{ old('title') ?: $topic->title }}" required="require">
-                </div >
-                 <div class="form-group" style="border:1px solid #E8E8E8 ; border-radius:8px">
-                   {!! $chart->render() !!}
+                    <input class="form-control" id="article-title" placeholder="{{ lang('Please write down a topic') }}" name="title" type="text" value="{{ old('title') ?: $topic->title }}" required="require"/>
                 </div>
+                 <div class="form-group" style="border:1px solid #E8E8E8 ; border-radius:8px" charset="utf-8">
+                   {!! $chart->render() !!}
+                 </div>
+
                 @include('topics.partials.composing_help_block', ['without_box' => false])
 
 

@@ -163,8 +163,7 @@
 @stop
 @section('scripts')
 <link rel="stylesheet" href="http://phphub5.app//build/assets/css/bootstrap-datetimepicker.min.css">
-<script  type="text/javascript" src="http://phphub5.app//build/assets/js/bootstrap-datetimepicker.min.js"></script>
-<script  type="text/javascript" src="http://phphub5.app//build/assets/js/bootstrap-datetimepicker.zh-CN.js"></script>
+
     <script type="text/javascript">
      $(function () {
         $("#datetimeStart").datetimepicker({
