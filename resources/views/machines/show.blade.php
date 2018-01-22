@@ -4,20 +4,7 @@
 {{ $machine->name }} | @parent
 @stop
 
-@section('styles')
-<style type="text/css">
-.normal{
-    color: #0F3; background-color: #000000; width: 80px;
-    border-top-style: ridge; border-right-style: ridge;border-bottom-style: ridge;border-left-style: ridge;
-    border-top-color: #999;border-right-color: #999; border-bottom-color: #999; border-left-color: #999;
-}
-.warn{
-    color: #F00; background-color: #000000; width: 80px;
-    border-top-style: ridge; border-right-style: ridge;border-bottom-style: ridge;border-left-style: ridge;
-    border-top-color: #999;border-right-color: #999; border-bottom-color: #999; border-left-color: #999;
- }
- </style>
-@stop
+
 
 @section('content')
 
