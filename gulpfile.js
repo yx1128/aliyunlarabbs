@@ -5,6 +5,7 @@ require('laravel-elixir-compress');
 var production = elixir.config.production;
 var basejs = [
     'resources/assets/js/vendor/jquery.min.js',
+    'resources/assets/js/vendor/highstock.js',
     'resources/assets/js/vendor/bootstrap.min.js',
     'resources/assets/js/vendor/moment.min.js',
     'resources/assets/js/vendor/zh-cn.min.js',
@@ -30,7 +31,6 @@ var basejs = [
     'resources/assets/js/vendor/jquery.highlight.js',
     'resources/assets/js/vendor/jquery.sticky.js',
     'resources/assets/js/vendor/sweetalert.js',
-    'resources/assets/js/vendor/highstock.js',
     'resources/assets/js/vendor/exporting.js',
     'resources/assets/js/vendor/bootstrap-datetimepicker.min.js',
     'resources/assets/js/vendor/bootstrap-datetimepicker.zh-CN.js',

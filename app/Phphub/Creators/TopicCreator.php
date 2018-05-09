@@ -86,7 +86,6 @@ class TopicCreator
         } elseif ($topic->isDiscussion()) {
             Auth::user()->increment('discussion_count', 1);
             //$machine->increment('article_count', 1);
-            //app(MachineHasNewDiscussion::class)->generate(Auth::user(), $topic, $topic->machines()->first());
         }
         else {
             Auth::user()->increment('topic_count', 1);

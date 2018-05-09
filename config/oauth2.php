@@ -44,6 +44,15 @@ return [
         ],
 
         /*
+         * 使用 Password 获取 access_token
+         */
+        'password' => [
+          'class'            => \League\OAuth2\Server\Grant\PasswordGrant::class,
+          'access_token_ttl' => (int) env('OAUTH_CLIENT_ACCESS_TOKEN_TTL', 2592000),
+          'callback'         => \Phphub\OAuth\PasswordVerifier::class.'@verify',
+        ],
+
+        /*
          * 在用户还未登陆的时候使用，可访问部分资源
          */
         'client_credentials' => [

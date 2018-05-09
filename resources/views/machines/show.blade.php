@@ -149,7 +149,7 @@
 
 @stop
 @section('scripts')
-<link rel="stylesheet" href="http://phphub5.app//build/assets/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="http://47.52.168.98/build/assets/css/bootstrap-datetimepicker.min.css">
 
     <script type="text/javascript">
      $(function () {

@@ -12,6 +12,7 @@ class TopicTransformer extends BaseTransformer
     {
         return [
             "id" => $model->id,
+            "user_id"=> $model->user_id,
             "category_id" => $model->category_id,
             "title" => $model->title,
             "body" => $model->body,
@@ -20,6 +21,9 @@ class TopicTransformer extends BaseTransformer
             "vote_up" => (bool)$model->vote_up,
             "vote_down" => (bool)$model->vote_down,
             "updated_at" => $model->updated_at,
+            "point_id" => $model->point_id,
+            "start" => $model->start,
+            "end" => $model->end,
             'links' => [
                 'details_web_view' => route('topic.web_view', $model->id),
                 'replies_web_view' => route('replies.web_view', $model->id),
@@ -47,4 +51,5 @@ class TopicTransformer extends BaseTransformer
     {
         return $this->item($model->category, new CategoryTransformer());
     }
+
 }

@@ -18,6 +18,7 @@ $router->group(['middleware' => 'oauth2:user'], function ($router) {
     ], function ($router) {
         $router->post('topics', 'TopicsController@store');
         $router->post('replies', 'RepliesController@store');
+        $router->post('discussions', 'DiscussionsController@store');
     });
 
     $router->group([
@@ -33,6 +34,7 @@ $router->group(['middleware' => 'oauth2:user'], function ($router) {
         $router->delete('topics/{id}', 'TopicsController@destroy');
         $router->post('topics/{id}/vote-up', 'TopicsController@voteUp');
         $router->post('topics/{id}/vote-down', 'TopicsController@voteDown');
+
 
         // Notifications
         $router->get('me/notifications', 'NotificationController@index');
@@ -76,6 +78,12 @@ $router->group([
 
     //Users
     $router->get('users/{id}', 'UsersController@show');
+
+    //Machines
+    $router->get('machines', 'MachinesController@index');
+    $router->get('machines/{id}', 'MachinesController@show');
+
+
 
     //Adverts
     $router->get('adverts/launch_screen', 'LaunchScreenAdvertsController@index');

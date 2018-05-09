@@ -15,13 +15,13 @@
 	<!-- 轮播（Carousel）项目 -->
 	<div class="carousel-inner">
     <div class="item active">
-			  <img src="http://phphub5.app/assets/images/1.jpg">
+			  <img src="http://47.52.168.98/assets/images/1.jpg">
 		</div>
     <div class="item">
-			  <img src="http://phphub5.app/assets/images/2.jpg">
+			  <img src="http://47.52.168.98/assets/images/2.jpg">
 		</div>
     <div class="item">
-			  <img src="http://phphub5.app/assets/images/3.jpg">
+			  <img src="http://47.52.168.98/assets/images/3.jpg">
 		</div>
 
 	</div>

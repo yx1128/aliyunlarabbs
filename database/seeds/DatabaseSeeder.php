@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-        insanity_check();
+        //insanity_check();
 
         Model::unguard();
 
